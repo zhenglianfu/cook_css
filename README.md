@@ -1,3 +1,3 @@
 ##Learn CSS
-###my guide of css self
+###myself guide of css
 [http://zhenglianfu.github.io/cook_css](http://zhenglianfu.github.io/cook_css "http://zhenglianfu.github.io/cook_css")
