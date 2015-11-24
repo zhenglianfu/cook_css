@@ -1,0 +1,10 @@
+/* used for auto response device */
+@media (minwidth: 960px){
+	/* pc */
+}
+@media (maxwidth:760px){
+	/* tablet */
+}
+@media (maxwidth:480px){
+	/* mobile */	
+}
