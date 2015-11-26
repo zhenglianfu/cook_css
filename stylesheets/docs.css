@@ -1,0 +1,35 @@
+/* style for documents */
+#chapters,
+#sections{
+	box-sizing: border-box;
+}
+#chapters{
+	padding: 0 5px;
+	border-right: 1px solid #ccc;
+}
+#chapters ul{
+	list-style: square inside;
+}
+#chapters li{
+	margin: 0 0 5px 0;
+}
+#chapters>li ul{
+	margin: 5px 0 0 10px;
+}
+#chapters>li>a{
+	font-weight: 700;
+}
+#chapters a{
+	text-decoration: none;
+	color: #555;	
+}
+#chapters a:hover,
+#chapters .selected>a{
+	color: #222;
+	text-decoration: underline;
+	margin-left: 3px;
+	transition: all .3s;
+}
+#sections{
+	padding: 0 10px;
+}
