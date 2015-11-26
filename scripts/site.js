@@ -31,7 +31,7 @@
 	function fillContents(contents){
 		// get visited map from localStorage
 		var storageKey = 'cook_css_chapter_visited';
-		var visitMap = window.localStorage ? JSON.parse(localStorage[storageKey]) : {};
+		var visitMap = window.localStorage && window.localStorage[storageKey] ? JSON.parse(localStorage[storageKey]) : {};
 		var chapters = document.getElementById('chapters'); 
 		for (var i = 0, len = contents.length; i < len; i++) {
 			chapters.appendChild(generateChapterElement(contents[i], i, visitMap));
