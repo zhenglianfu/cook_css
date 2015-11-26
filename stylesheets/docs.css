@@ -7,8 +7,11 @@
 	padding: 0 5px;
 	border-right: 1px solid #ccc;
 }
-#chapters ul{
+#catalog ul{
 	list-style: square inside;
+}
+#chapters li.visited{
+	list-style: disc inside;
 }
 #chapters li{
 	margin: 0 0 5px 0;
