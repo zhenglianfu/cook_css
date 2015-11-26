@@ -1,0 +1,20 @@
+/* used for auto response device */
+@media (max-width: 1024px){
+	/* laptop */
+	body{
+		background: #eee;
+	}
+}
+@media (max-width:800px) and (min-width:480px){
+	/* tablet */
+	body{
+		background: #991dca;
+		color: #fff;
+	}
+}
+@media (max-width:480px){
+	/* mobile */
+	body{
+		background: #0af;
+	}	
+}
