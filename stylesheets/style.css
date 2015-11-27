@@ -6,6 +6,7 @@ header,nav,section,article,aside,footer,h1,h2,h3,h4,h5,h6,a,button,video,audio,c
 	padding: 0;
 	font-size: 12px;
 	font-family: Courier New, Courier, monospace sans-serif;
+	vertical-align: baseline;
 }
 /* html5 elements */
 header,nav,section,article,aside,footer{
@@ -82,6 +83,8 @@ body{
 .clear-fix:after,
 .col:before,
 .col:after{
+	content: "";
+	display: table;
 	clear: both;
 }
 /* types */
@@ -149,4 +152,17 @@ h6{
 .col12-whole
 .col12-12{
 	width: 100%;
+}
+/* icons */
+*[class~="awe-icon"]:before{
+	font-family: "awesome-icon" Courier New, Courier, monospace, sans-serif;
+	content: "";
+	display: inline-block;
+	vertical-align: baseline;
+	font-size: 1em;
+	font-weight: normal;
+	margin-right: 5px;
+}
+.awe-icon-pencil:before{
+	content: "\f040";
 }
