@@ -43,7 +43,9 @@
 				var li = target.parentNode;
 				if (li.id && li.id.indexOf('chapter_') === 0) {
 					var path = li.id.split('_').slice(1);
-					console.log(path, path.length == 1 ? contents[path[0]] : path.length == 2 ? contents[path[0]].chapters[path[1]] : undefined);
+					var content = null;
+					console.log(path, (content = path.length == 1 ? contents[path[0]] : path.length == 2 ? contents[path[0]].chapters[path[1]] : undefined));
+					document.title = content ? content.title || content.name : 'cook css';
 					if (window.localStorage) {
 						var temp = JSON.parse(localStorage[storageKey] || '{}');
 						temp[path.join('_')] = {
@@ -52,7 +54,7 @@
 						localStorage[storageKey] = JSON.stringify(temp);	
 					}
 				} else {
-					conosle.log('unknow link');
+					console.log('unknow link');
 				}		
 			}
 		});
