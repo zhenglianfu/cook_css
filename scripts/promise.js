@@ -8,14 +8,14 @@
 	}
 }(this, function(exports){
 	// 实现promise， 不能在外部访问状态机
-	function Promise(ins){
-		var origin = ins || {};
+	function Promise(ins, args){
+		var origin = ins || {},
 		// local and private variable of Promise
-		var resolved = null;
-		var callbacks = [];
-		var errbacks = []
-		var call_len = 0;
-		var err_len = 0;
+		resolved = null,
+		callbacks = [],
+		errbacks = [],
+		call_len = 0,
+		err_len = 0;
 		function clearApi(instance){
 			instance.resolve = instance.reject = function(){return this;};
 		}
@@ -65,7 +65,7 @@
 		// if resolve 触发callbacks队列上的函数 else wait or add in callbacks
 		done: function(fn){
 			this.then(fn);
-			this.status() && this.trigger(arguments);
+			this.status() && this.trigger.apply(this, arguments);
 			return this;
 		}
 	};
@@ -75,16 +75,3 @@
 	}
 	return Promise;
 }));
-// test
-var x = {
-	name: 'x',
-	getName: function(){
-		return this.name;
-	}
-};
-var p = new Promise(x);
-p.then(function(){
-	console.log(this.getName(), arguments);
-}).resolve().done(function(){
-	console.log('all finished');
-});

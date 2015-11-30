@@ -7,6 +7,50 @@
 		}
 		return null;	
 	};
+	// wrap ajax support promise
+	function XHR(opts){
+		this.xhr = createXHR();
+		var promise = new Promise(this);
+		this.init(opts, promise);
+		var that = this;
+		['then', 'done'].forEach(function(name){
+			that[name] = function(){
+				promise[name].apply(promise, arguments);
+			}
+		});
+	}
+	// common methods
+	XHR.prototype = {
+		init: function(opts, promise){
+			// ready for send
+			opts = opts || {};
+			this.xhr.open(opts.method || 'GET', opts.url || '', (opts.async === true || opts.async === undefined));
+			this.xhr.setRequestHeader('Content-Type', opts.contentType || 'application/x-www-form-urlencoded');
+			typeof opts.beforeSend === 'function' ? opts.beforeSend(this.xhr) : 0;
+			// listeners
+			bindListeners(promise, this.xhr, opts);
+			function bindListeners(promise, xhr, opts){
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+							var response = opts.dataType && typeof opts.dataType === 'string' && opts.dataType.toUpperCase() == 'JSON' ? JSON.parse(xhr.responseText) : xhr.responseText;
+							typeof opts.success === 'function' ? opts.success(response, xhr) : 0;
+							promise.resolve(response, xhr);
+						} else {
+							typeof opts.error === 'function' ? opts.error(xhr) : 0;
+							promise.reject(xhr);
+						}
+						typeof opts.always === 'function' ? opts.always(xhr) : 0;
+					}	
+				};
+			}
+			// send
+			this.xhr.send(opts.data || '');
+		}
+	};
+	window.xhr = function(opts){
+		return new XHR(opts);
+	};
 	// traditional way to call ajax
 	(function(){
 		if (window.localStorage && localStorage['cook_css_params']) {
