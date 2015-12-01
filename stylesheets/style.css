@@ -88,6 +88,23 @@ body{
 	clear: both;
 }
 /* types */
+code{
+	padding: 5px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	font-family: Courier New, Courier, monospace, sans-serif;
+	vertical-align: baseline;	
+}
+.tab{
+	display: inline-block;
+	width: 2em;
+	height: 1em;
+}
+.space{
+	display: inline-block;
+	width: .5em;
+	height: 1em;
+}
 h1{
 	font-size: 2.333em;
 }

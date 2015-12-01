@@ -1,0 +1,15 @@
+#selector_0 div{
+	padding: 10px;
+}
+#selector_0 div{
+	background: #ccc;
+}
+#selector_0 .block{
+	background: #aaa;
+}
+#selector_0 #rule_block{
+	background: #777;
+} 
+#selector_0 .block.red_block{
+	background: #e33;
+}

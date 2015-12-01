@@ -165,9 +165,63 @@
 	 * define link paragraph title code image quote tab
 	*/
 	function formatHTMLPart(htmlPart){
-		htmlPart = htmlPart.replace(/\n/g, '<br>');
-		return htmlPart;
+		// TODO 
+		return formatElementText(htmlPart);
 	}
+	function formatElementText(htmlPart){
+		var div = document.createElement('div');
+		div.innerHTML = htmlPart;
+		var formatTextOnly = function(parentNode){
+			if (parentNode) {
+				var childNodes = parentNode.childNodes;
+				for (var i = 0, len = childNodes.length; i < len; i+=1) {
+					var node = childNodes[i]; 
+					if (node.nodeType == 3 && node.nodeName.toLowerCase() == '#text') {
+						var str = node.nodeValue;
+						if (str.trim() != ''){
+							// del first character if s[0] == '\n'
+							str = str.replace(/^\n/, '');
+							node.data = str.replace(/\n/g, '![f[\n]]').replace(/\t/g, '![f[tab]]').replace(/ /g, '![f[space]]');	
+						} 
+					} else {
+						formatTextOnly(node);
+					}
+				}
+			}
+		};
+		formatTextOnly(div);
+		return div.innerHTML.replace(/!\[f\[\n\]\]/g, '<br>').replace(/!\[f\[tab\]\]/g, '&nbsp;&nbsp;&nbsp;&nbsp;').replace(/!\[f\[space\]\]/g, '&nbsp;');
+	}
+	var syntaxTree = {
+		css : {}
+	};
+	function formatCode(input, language){
+		var output;
+		switch(language){
+			case 'html':
+			output = codeFormater.formatHTML(input);
+				break;
+			case 'css':
+			output = codeFormater.formatCSS(input);
+				break;
+			case 'javascript':
+			case 'js':
+			output = codeFormater.formatJS(input);
+				break;
+			default:
+				output = input;	
+		}
+		return output;
+	}
+	var codeFormater = {
+		formatHTML: function(input){
+			return input;
+		},
+		formatCSS: function(input){
+			// css selector rule
+			return input;
+		}
+	};
 	/* initial page */
 	(function(){
 		hashchangeListener();

@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="./chapters/2/0.css">
+基本规则
+长幼有序 [!important(部分浏览器支持), style, #id, .class, tagName]
+<article>
+<code>
+div{
+	padding: 10px;
+}
+div{
+	background: #ccc;
+}
+.block{
+	background: #aaa;
+}
+#rule_block{
+	background: #777;
+}
+.block.red_block{
+	background: #e33;
+}
+</code>
+<article>
+<article id="selector_0">
+	<div>div [0,0,0,0,1]</div>
+	<div class="block">class="block" [0,0,0,1,0] > div [0,0,0,0,1]</div>
+	<div id="rule_block" class="block">id="rule_block" [0,0,1,0,0] >>> class="block" [0,0,0,1,0]</div>
+	<div class="block red_block">class="block red_block" [0,0,0,2,0] > class="block" [0,0,0,1,0]</div>
+	<div id="rule_block" class="block red_block">id="rule_block" [0,0,1,0,0] >>> class="block red_block" [0,0,0,2,0]</div>
+	<div>这是一场不同级别之间的较量，用>>>表示远大于。看上面那一组，两个class选择器叠加作用于可爱的div，但是最终是id选择器起作用，等级森严，需要多少个class选择器叠加才能抵得上一个id选择器的权重呢，谁会吃饱了撑的</div>	
+</article>
