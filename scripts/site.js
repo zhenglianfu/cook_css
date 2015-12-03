@@ -9,18 +9,23 @@
 	};
 	// wrap ajax support promise
 	function XHR(opts){
+		if (!(this instanceof XHR)) {
+			return new XHR(opts);
+		}
 		this.xhr = createXHR();
 		var promise = new Promise(this);
 		this.init(opts, promise);
 		var that = this;
-		['then', 'done'].forEach(function(name){
+		['then', 'done', 'else'].forEach(function(name){
 			that[name] = function(){
 				promise[name].apply(promise, arguments);
+				return that;
 			}
 		});
 	}
 	// common methods
 	XHR.prototype = {
+		version: '0.0.1',
 		init: function(opts, promise){
 			// ready for send
 			opts = opts || {};
@@ -48,29 +53,21 @@
 			this.xhr.send(opts.data || '');
 		}
 	};
-	window.xhr = function(opts){
-		return new XHR(opts);
-	};
 	// traditional way to call ajax
 	(function(){
 		if (window.localStorage && localStorage['cook_css_params']) {
 			fillContents(JSON.parse(localStorage['cook_css_params']).contents);
 			return;
 		}
-		var xhr = createXHR();
-		xhr.open("get", "./params/contents.json");
-		xhr.onreadystatechange = function(){
-			if (xhr.readyState == 4) {
-				if (xhr.status == 200) {
-					var json = JSON.parse(xhr.responseText);
-					fillContents(json.contents);
-					window.localStorage && (localStorage['cook_css_params'] = xhr.responseText);		
-				} else {
-					
-				}
-			}
-		};
-		xhr.send("");		
+		XHR({
+			method: 'GET',
+			url: './params/contents.json',
+			data: '',
+			dataType: 'json',
+		}).then(function(response, xhr){
+			fillContents(response.contents);
+			window.localStorage && (localStorage['cook_css_params'] = xhr.responseText);
+		}).done();
 	}());
 	function fillContents(contents){
 		// get visited map from localStorage
@@ -146,20 +143,17 @@
 		}
 	};
 	function getPart(path, section){
-		var xhr = createXHR();
-		xhr.open('get', './chapters/' + path);
-		xhr.setRequestHeader('Content-Type', 'text/html;charset=utf8');
-		xhr.onreadystatechange = function(){
-			if (xhr.readyState == 4) {
-				if (xhr.status == 200) {
-					section.innerHTML = formatHTMLPart(xhr.responseText);
-				} else {
-					section.innerHTML = xhr.status + ' ' + xhr.statusText;
-					section.className = 'error';							
-				}
-			}
-		}
-		xhr.send('');
+		return XHR({
+			method: 'get',
+			url: './chapters/' + path,
+			contentType: 'text/html;charset=utf8',
+			dataType: 'html'
+		}).then(function(responseText, xhr){
+			section.innerHTML = formatHTMLPart(xhr.responseText);
+		}).else(function(xhr){
+			section.innerHTML = xhr.status + ' ' + xhr.statusText;
+			section.className = 'error';
+		}).done();
 	}
 	/**
 	 * define link paragraph title code image quote tab
