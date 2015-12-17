@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="./chapters/2/0.css">
-基本规则
+<h3>基本规则</h3>
 长幼有序 [!important(部分浏览器支持), style, #id, .class, tagName]
 <article>
 <code>
@@ -20,7 +20,7 @@ div{
 }
 </code>
 <article>
-<article id="selector_0">
+<article id="ch2_0">
 	<div>div [0,0,0,0,1]</div>
 	<div class="block">class="block" [0,0,0,1,0] > div [0,0,0,0,1]</div>
 	<div id="rule_block" class="block">id="rule_block" [0,0,1,0,0] >>> class="block" [0,0,0,1,0]</div>

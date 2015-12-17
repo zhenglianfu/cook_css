@@ -1,0 +1,8 @@
+一个选择器内声明多个样式（将多个样式写在一个选择器内）
+<code>
+p{
+	color: #333;
+	margin: 0 0 15px;
+	padding: 3px;
+}
+</code>
