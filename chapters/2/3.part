@@ -1,0 +1,41 @@
+<link rel="stylesheet" type="text/css" href="./chapters/2/3.css">
+rule: (selector|null)[attrName]{ ... }
+
+<code>
+div{
+    height: 90px;
+    width： 90px;
+    float: left;
+    margin: 5px 10px 5px 0;
+    background-color: #ccc;
+}
+div[data-style]{
+    border: 1px solid #111;
+}
+/* 全等 */
+div[data-style=cook_css]{
+    background: #6af;
+}
+/* 属性值以”prefix“开头的 */
+div[data-style^="prefix"]{
+    width: 150px;
+}
+/* 包含”cook_css“ */
+div[data-style*=cook_css]:after{
+    content: "data-style contain string cook_css";
+    display: block;
+    text-align: center;
+}
+/* 属性选择器组合 */
+div[data-style][data-ext]{
+    background: #a21;
+}
+</code>
+
+<div id="ch2_3">
+    <div></div>
+    <div data-style=""></div>
+    <div data-style="cook_css"></div>
+    <div data-style="prefix_cook_css"></div>
+    <div data-style="" data-ext=""></div>
+</div>

@@ -1,0 +1,29 @@
+#ch2_3 div{
+    height: 90px;
+    width: 90px;
+    float: left;
+    margin: 5px 10px 5px 0;
+    background-color: #ccc;
+    box-sizing: border-box;
+    position: relative;
+}
+#ch2_3 div[data-style]{
+    border: 1px solid #111;
+}
+#ch2_3 div[data-style="cook_css"]{
+    background: #6af;
+}
+#ch2_3 div[data-style^="prefix"]{
+    width: 150px;
+}
+#ch2_3 div[data-style~="suffix"]{
+    width: 30px;
+}
+#ch2_3 div[data-style][data-ext]{
+    background: #a21;
+}
+#ch2_3 div[data-style*=cook_css]:after{
+    content: "data-style contain string \"cook_css\" ";
+    display: block;
+    text-align: center;
+}
