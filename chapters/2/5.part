@@ -1,0 +1,13 @@
+伪类：
+    链接伪类
+    :link 指示一个从未访问过的超链接
+    :visited 指示一个已经访问过的超链接
+    
+    动态伪类
+    :focus 指示当前拥有输入焦点的元素 input select textarea ...
+    :hover 指示鼠标指针停留在元素上
+    :active 指示被用户输入激活的元素， button/link被用户点击
+    
+    <b>伪类顺序：link-visited-focus-hover-avtive</b>
+         
+伪元素：
