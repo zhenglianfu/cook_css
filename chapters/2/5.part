@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="./chapters/2/5.css">
 伪类：
     链接伪类
     :link 指示一个从未访问过的超链接
@@ -9,5 +10,34 @@
     :active 指示被用户输入激活的元素， button/link被用户点击
     
     <b>伪类顺序：link-visited-focus-hover-avtive</b>
-         
+    
+    
+    选择第一个子元素 :first-child
+    <b>误区: p:first-child{ ... }会选择p元素下的第一个元素。</b>
+    
+    正确解读： p元素如果是父元素的第一个子元素则被选中
+    
+<code>
+&lt;div&gt;
+    &lt;p&gt;&lt;em&gt;p元素的第一个子元素&lt;/em&gt; 我是第一个P&lt;/p&gt;
+    &lt;p&gt;&lt;em&gt;p元素的第一个子元素&lt;/em&gt; 我是第二个P&lt;/p&gt;
+&lt;/div&gt; 
+</code>
+<code>
+    p:first-child{
+        color: #a00;
+        font-size: 16px;
+    }
+</code>
+    <div id="ch_2_5">
+        <p><em>p元素的第一个子元素</em> 我是第一个P</p>
+        <p><em>p元素的第一个子元素</em> 我是第二个P</p>
+    </div>
+
+结合伪类 a:visited:hover{ ... }    
+    
 伪元素：
+:first-letter{ ... } 设置块级元素的第一个字母
+:first-line{ ... } 设置块级元素的第一行
+:before :after 前后插入元素 
+    

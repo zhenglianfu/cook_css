@@ -1,0 +1,14 @@
+树形文档结构
+root
+    parentNode
+        childNode
+        childNode
+            brotherNode
+            childNode
+            brotherNode
+            brotherNode
+        childNode
+后代选择器 root childNode{ ... } /* root下的所有childNode都会被选择 */
+选择子元素，忽略所有隔代元素 parentNode > childNode{ ... } /* childNode元素内的childNode会被忽略 */
+兄弟选择器，选择相邻的元素，选择元素之后匹配的相邻元素 childNode + brotherNode{ ... } /* childNode之前的brotherNode不会被选择， childNode相邻的brotherNode被选择，即只有一个元素会被选择 */
+          

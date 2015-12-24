@@ -1,0 +1,10 @@
+特殊性：不同选择器有不同的优先级，在样式冲突的情况下更据优先级来选择使用哪个选择器的样式
+[inline style, #id, .class/attr/(pseudo class), element/(pseudo element)]
+<code>
+h1{ ... }          /* specificity = 0,0,0,1 */
+p em{ ... }        /* specificity = 0,0,0,2 */
+.grape{ ... }      /* specificity = 0,0,1,0 */
+p.bright em{ ... } /* specificity = 0,0,1,2 */
+a[href]{ ... }     /* specificity = 0,0,1,1 */
+#id24{ ... }       /* specificity = 0,1,0,0 */ 
+</code>

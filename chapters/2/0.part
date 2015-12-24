@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="./chapters/2/0.css">
 <h3>基本规则</h3>
-长幼有序 [!important(部分浏览器支持), style, #id, .class, tagName]
+长幼有序 [!important, style, #id, .class, tagName]
 <article>
 <code>
 div{
