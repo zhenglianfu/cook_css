@@ -8,3 +8,6 @@ p.bright em{ ... } /* specificity = 0,0,1,2 */
 a[href]{ ... }     /* specificity = 0,0,1,1 */
 #id24{ ... }       /* specificity = 0,1,0,0 */ 
 </code>
+
+
+重要性：!important总是优先于其他的特殊性
